@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchase Confirmation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js"></script>
+</head>
+<body>
+    <h1>Purchase Confirmation</h1>
+    <p>Thank you for your purchase!</p>
+    <p>You bought: {{ product.name }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <p>You received: {{ loyalty_points }} loyalty points for this purchase.</p>
+    <input type="hidden" id="wallet_address" name="wallet" value=""> <!-- Hidden field for wallet address -->
+    <button type="button" onclick="connectWallet()">Connect Wallet</button>
+    <script>
+        async function connectWallet() {
+            if (typeof window.ethereum !== 'undefined') {
+                // Request account access
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const walletAddress = accounts[0];
+                    console.log('Connected wallet:', walletAddress);
+
+                    // Populate the wallet address field
+                    document.getElementById('wallet_address').value = walletAddress;
+
+                } catch (error) {
+                    console.error("User denied account access:", error);
+                }
+            } else {
+                alert("Please install MetaMask!");
+            }
+        }
+    </script>
+</body>
+</html>
