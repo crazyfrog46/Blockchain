@@ -4,21 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EthBit Store</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS (for futuristic design) -->
+    <style>
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .product-card {
+            border-radius: 15px;
+            padding: 30px;
+            background: linear-gradient(45deg, #4e00ff, #8e2de2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .product-name {
+            font-size: 1.9rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+            margin-bottom: 15px;
+        }
+        .product-description {
+            color: #ddd;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #ff8c00;
+            margin-bottom: 20px;
+        }
+        .btn-buy {
+            background: linear-gradient(45deg, #ff007c, #ff8000);
+            color: white;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            text-transform: uppercase;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .btn-buy:hover {
+            background: linear-gradient(45deg, #ff8c00, #ff007c);
+            transform: scale(1.1);
+        }
+        h1 {
+            font-size: 3.0rem;
+            text-align: center;
+            margin-bottom: 50px;
+            text-shadow: 0 0 15px #fff, 0 0 30px #fff;
+        }
+        .product-card img {
+            max-width: 100%;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Products</h1>
-    <ul>
-        {% for product in products %}
-        <li>
-            <h2>{{ product.name }}</h2>
-            <p>{{ product.description }}</p>
-            <p>Price: ${{ product.price }}</p>
-            <form action="{% url 'purchase_product' product.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Buy</button>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
+
+    <div class="container">
+        <h1>EthBiT Store</h1>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="product-card">
+                    <h2 class="product-name">{{ product.name }}</h2>
+                    <p class="product-description">{{ product.description }}</p>
+                    <p class="price">Price: €{{ product.price }}</p>
+                    <form action="{% url 'purchase_product' product.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn-buy">Buy</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

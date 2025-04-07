@@ -1,14 +1,87 @@
-<h2>Login</h2>
-<form method="POST">
-    {% csrf_token %}
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthBit - Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS (for futuristic design) -->
+    <style>
+        body {
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background: linear-gradient(45deg, #4e00ff, #8e2de2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            text-align: center;
+        }
+        .login-container h1 {
+            font-size: 2rem;
+            text-shadow: 0 0 15px #fff, 0 0 30px #fff;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-login {
+            background: linear-gradient(45deg, #ff007c, #ff8000);
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            text-transform: uppercase;
+            transition: background 0.3s ease, transform 0.3s ease;
+            width: 100%;
+        }
+        .btn-login:hover {
+            background: linear-gradient(45deg, #ff8c00, #ff007c);
+            transform: scale(1.1);
+        }
+        .register-link {
+            margin-top: 15px;
+            display: block;
+            color: #ff007c;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .register-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login to EthBiT</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+        <a href="/register" class="register-link">Don't have an account? Register here</a>
+    </div>
 
-<!-- Add link to registration page -->
-<p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
-
-{% if error %}
-    <p style="color:red;">{{ error }}</p>
-{% endif %}
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
