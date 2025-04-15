@@ -4,4 +4,4 @@ class StoreConfig(AppConfig):
     name = 'store'
 
     def ready(self):
-        import store.signals  # Connects the signals
+        import store.signals

@@ -1,17 +1,16 @@
 from django.contrib import admin
-from .models import Product, Purchase, UserProfile  # Only include the models that exist in your models.py
+from .models import Product, Purchase, UserProfile 
 
-# Unregister models if they are already registered
+
 from django.contrib.admin.sites import site
 
-models = [Product, Purchase, UserProfile]  # Add all your models here
+models = [Product, Purchase, UserProfile]
 
 for model in models:
     try:
         admin.site.unregister(model)
     except admin.sites.NotRegistered:
-        pass  # If the model is not registered, ignore the error
+        pass
 
-# Register models
 for model in models:
     admin.site.register(model)

@@ -6,7 +6,7 @@ SECRET_KEY = 'django-insecure-ca6r3*g40x+22l9o30b^&i_x2!m)1euw)s=bc!2oovp*2=f*w9
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -17,7 +17,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
-    'django.contrib.sites',  # Add this line to handle authentication features
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -84,8 +84,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'product_list'  # Redirect after login
-LOGOUT_REDIRECT_URL = '/'  # Redirect after logout
+LOGIN_REDIRECT_URL = 'product_list'
+LOGOUT_REDIRECT_URL = '/'
 
-# Add the following to handle the login URLs:
-LOGIN_URL = '/login/'  # Login URL
+
+LOGIN_URL = '/login/'

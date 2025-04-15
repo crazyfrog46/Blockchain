@@ -14,10 +14,10 @@ def save_user_profile(sender, instance, **kwargs):
 
 @receiver(post_save, sender=Purchase)
 def update_loyalty_points(sender, instance, created, **kwargs):
-    if created:  # Only update loyalty points if it's a new purchase
+    if created:
         try:
-            user_profile = instance.user.userprofile  # Access the user profile correctly
-            user_profile.loyalty_points += instance.loyalty_points  # Add loyalty points
-            user_profile.save()  # Save the updated profile
+            user_profile = instance.user.userprofile
+            user_profile.loyalty_points += instance.loyalty_points
+            user_profile.save()
         except UserProfile.DoesNotExist:
             print(f"UserProfile for user {instance.user.username} not found.")
